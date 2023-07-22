@@ -30,6 +30,7 @@ defmodule GildedRoseTest do
       items = [%Item{name: "Aged Brie", sell_in: 30, quality: 10}]
       assert [item] = GildedRose.update_quality(items)
       assert item.quality == 11
+      assert item.sell_in == 29
     end
 
     test "never updates an item with increasing quality over 50" do
@@ -66,7 +67,7 @@ defmodule GildedRoseTest do
       assert item.quality == 0
     end
 
-    test "never updates Sulfuras sell_in or quality" do
+    test "never updates Sulfuras sell_in or quality values" do
       items = [%Item{name: "Sulfuras, Hand of Ragnaros", sell_in: 30, quality: 50}]
       assert [item] = GildedRose.update_quality(items)
       assert item.quality == 50
